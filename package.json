@@ -4,7 +4,10 @@
   "description": "A front end for the AWS Pricing Api, written with React and blueprintjs.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   },
   "repository": {
     "type": "git",
@@ -21,5 +24,10 @@
   "bugs": {
     "url": "https://github.com/jpdillingham/AWSPricingExplorer/issues"
   },
-  "homepage": "https://github.com/jpdillingham/AWSPricingExplorer#readme"
+  "homepage": "https://github.com/jpdillingham/AWSPricingExplorer#readme",
+  "dependencies": {
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-scripts": "^1.1.4"
+  }
 }
