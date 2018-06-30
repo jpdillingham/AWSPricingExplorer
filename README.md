@@ -1,2 +1,3 @@
-# AWSCatalog
-A front end for the AWS Pricing api, written with React and blueprintjs.
+# AWS Pricing Explorer
+
+A front end for the AWS Pricing Api, written in JavaScript with React and blueprintjs.

@@ -1,0 +1,25 @@
+{
+  "name": "awspricingexplorer",
+  "version": "1.0.0",
+  "description": "A front end for the AWS Pricing Api, written with React and blueprintjs.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpdillingham/AWSPricingExplorer.git"
+  },
+  "keywords": [
+    "aws",
+    "pricing",
+    "react",
+    "blueprintjs"
+  ],
+  "author": "JP Dillingham",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/jpdillingham/AWSPricingExplorer/issues"
+  },
+  "homepage": "https://github.com/jpdillingham/AWSPricingExplorer#readme"
+}
