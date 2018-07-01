@@ -27,8 +27,6 @@
   "homepage": "https://github.com/jpdillingham/AWSPricingExplorer#readme",
   "dependencies": {
     "@blueprintjs/core": "^2.3.1",
-    "aws-sdk": "^2.266.1",
-    "dotenv": "^6.0.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-scripts": "^1.1.4",
