@@ -7,6 +7,7 @@ import ServiceDropDown from './ServiceDropDown';
 import AttributeFilter from './AttributeFilter';
 import { INTENT_PRIMARY, INTENT_SUCCESS } from '@blueprintjs/core/lib/esm/common/classes';
 import AddFilterButton from './AddFilterButton';
+import FetchDataButton from './FetchDataButton';
 
 const styles = {
     body: {
@@ -49,6 +50,10 @@ class App extends Component {
         this.setState({ content: this.state.filters })
     }
 
+    handleFetchData = () => {
+        console.log(this.state.filters);
+    }
+
     handleServiceSelect = (service) => {
         this.setState({ 
             selectedService: this.state.services.find(s => s.ServiceCode == service)
@@ -81,7 +86,7 @@ class App extends Component {
                             />
                         )}
                         <AddFilterButton onClick={this.handleAddFilter}/>
-                        <Button onClick={this.handleFetch} className={'pt-intent-success'} icon={'cloud-download'}>Fetch Data</Button>
+                        <FetchDataButton onClick={this.handleFetchData}/>
                     </div>
                 }
                 <pre>{JSON.stringify(this.state.content, null, 4)}</pre>
