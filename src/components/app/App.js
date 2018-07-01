@@ -49,7 +49,7 @@ class App extends Component {
                 <ServiceDropDown services={this.state.services} onChange={this.handleServiceSelect}/>
                 {!this.state.selectedService ? '' :
                     <div>
-                        <AttributeFilter attributes={attributes} />
+                        <AttributeFilter service={this.state.selectedService} attributes={attributes} />
                         <Button>Add Filter</Button>
                     </div>
                 }
