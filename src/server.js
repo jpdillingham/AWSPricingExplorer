@@ -29,6 +29,10 @@ app.get('/services', (req, res) => {
     .then(data => {
         res.status(200);
         res.json(data);
+    })
+    .catch(error => {
+        res.status(500);
+        res.json(error);
     });
 });
 
@@ -38,6 +42,10 @@ app.get('/services/:service', (req, res) => {
     .then(data => {
         res.status(200);
         res.json(data);
+    })
+    .catch(error => {
+        res.status(500);
+        res.json(error);
     });
 });
 
@@ -54,7 +62,7 @@ const describeAllServices = (services = [], next) => {
             else {
                 resolve(services);
             }
-        });
+        })    
     });
 }
 
@@ -64,6 +72,10 @@ app.get('/services/:service/products', (req, res) => {
     getAllProducts(req.params.service, req.query).then(data => {
         res.status(200);
         res.json(data);
+    })
+    .catch(error => {
+        res.status(500);
+        res.json(error);
     });
 });
 
@@ -93,6 +105,10 @@ app.get('/services/:service/attributeValues/:attribute', (req, res) => {
     .then(data => {
         res.status(200);
         res.json(data);
+    })
+    .catch(error => {
+        res.status(500);
+        res.json(error);
     });
 });
 
