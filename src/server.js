@@ -80,4 +80,14 @@ app.get('/products/:service', (req, res) => {
     })
 })
 
+app.get('/attributes/:service/:attribute', (req, res) => {
+    pricing.getAttributeValues({ 
+        ServiceCode: req.params.service,
+        AttributeName: req.params.attribute,
+    }).promise().then(data => {
+        res.status(200);
+        res.json(data);
+    })
+})
+
 app.listen(port, () => console.log('Listening on port ' + port + '.'));
