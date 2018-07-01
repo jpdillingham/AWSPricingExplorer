@@ -6,7 +6,8 @@ const styles = {
 		width: 200,
 	},
 	value: {
-		width: 400,
+		marginLeft: 10,
+		width: 405,
 	},
 }
 
