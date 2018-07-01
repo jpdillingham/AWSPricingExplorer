@@ -54,7 +54,7 @@ class App extends Component {
 
     handleServiceSelect = (service) => {
         this.setState({ 
-            selectedService: this.state.services.find(s => s.ServiceCode == service),
+            selectedService: this.state.services.find(s => s.ServiceCode === service),
             filters: [],
         }, () => {
             fetch(BACKEND_URL + '/services/' + service)
@@ -67,7 +67,6 @@ class App extends Component {
     }
 
     render() {
-        let filters = this.state.filters || [];
         let attributes = this.state.selectedService ? this.state.selectedService.AttributeNames : [];
 
         return (
