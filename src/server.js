@@ -42,4 +42,42 @@ app.get('/services', (req, res) => {
     })
 })
 
+var getAllProducts = (service, products = [], next) => {
+    filters = [
+        {
+            Field: 'location',
+            Type: 'TERM_MATCH',
+            Value: 'US West (Oregon)'
+        },
+        {
+            Field: 'instanceType',
+            Type: 'TERM_MATCH',
+            Value: 'r4.xlarge'
+        },
+    ]
+
+    return new Promise((resolve, reject) => {
+        pricing.getProducts({ ServiceCode: service, NextToken: next, Filters: filters }).promise()
+        .then(data => {
+            products = products.concat(data.PriceList);
+            if (data.NextToken) {
+                console.log('next chunk')
+                getAllProducts(service, products, data.NextToken)
+                .then(data => resolve(data))
+            } 
+            else {
+                resolve(products);
+            }
+        })
+    })
+}
+
+app.get('/products/:service', (req, res) => {
+    //pricing.getProducts({ ServiceCode: req.params.service }).promise().then(data => {
+    getAllProducts(req.params.service).then(data => {
+        res.status(200);
+        res.json(data);
+    })
+})
+
 app.listen(port, () => console.log('Listening on port ' + port + '.'));
