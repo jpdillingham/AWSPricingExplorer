@@ -16,11 +16,12 @@ class App extends Component {
     state = { 
         services: [],
         selectedService: undefined,
-        content: 'select service'
+        content: 'select service',
+        filters: [],
     }
 
     componentWillMount = () => {
-        fetch('http://localhost:3001/services')
+        fetch(BACKEND_URL + '/services')
         .then(response => {
             response.json().then(data => {
                 this.setState({ services: data });
@@ -37,7 +38,7 @@ class App extends Component {
             selectedService: this.state.services.find(s => s.ServiceCode == service)
         }, () => {
             console.log(this.state.selectedService)
-            fetch('http://localhost:3001/services/' + service)
+            fetch(BACKEND_URL + '/services/' + service)
             .then(response => {
                 response.json().then(data => {
                     this.setState({ content: data.Services[0] })
