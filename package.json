@@ -4,7 +4,7 @@
   "description": "A microservice for the AWS Pricing Api, written in JavaScript with Express, React, and blueprintjs.",
   "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm run serve | react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
@@ -18,7 +18,8 @@
     "aws",
     "pricing",
     "react",
-    "blueprintjs"
+    "blueprintjs",
+    "express"
   ],
   "author": "JP Dillingham",
   "license": "GPL-3.0-or-later",
@@ -28,6 +29,7 @@
   "homepage": "https://github.com/jpdillingham/AWSPricingExplorer#readme",
   "dependencies": {
     "@blueprintjs/core": "^2.3.1",
+    "@blueprintjs/select": "^2.0.1",
     "aws-sdk": "^2.266.1",
     "body-parser": "^1.18.3",
     "concurrently": "^3.6.0",
