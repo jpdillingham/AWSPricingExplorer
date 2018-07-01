@@ -4,7 +4,8 @@
   "description": "A microservice for the AWS Pricing Api, written in JavaScript with Express, React, and blueprintjs.",
   "main": "index.js",
   "scripts": {
-    "start": "npm run serve | react-scripts start",
+    "start": "node src/server.js | react-scripts start",
+    "start-dev": "npm run serve | react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
