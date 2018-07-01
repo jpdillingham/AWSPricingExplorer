@@ -5,6 +5,8 @@ import { getGuid } from '../../util';
 import { Button, Intent, Spinner, Select } from "@blueprintjs/core";
 import ServiceDropDown from './ServiceDropDown';
 import AttributeFilter from './AttributeFilter';
+import { INTENT_PRIMARY, INTENT_SUCCESS } from '@blueprintjs/core/lib/esm/common/classes';
+import AddFilterButton from './AddFilterButton';
 
 const styles = {
     body: {
@@ -29,15 +31,28 @@ class App extends Component {
         })
     }
 
-    handleFilterChange = (filterId, attribute, value) => {
-        console.log(filterId, attribute,value);
+    handleAddFilter = () => {
+        this.setState({ 
+            filters: this.state.filters.concat({ 
+                filterId: getGuid(),
+            })
+        })
+    }
+
+    handleFilterChange = (filter) => {
+        this.setState({
+            filters: this.state.filters.map(f => {
+                return f.filterId === filter.filterId ? filter : f
+            })
+        })
+
+        this.setState({ content: this.state.filters })
     }
 
     handleServiceSelect = (service) => {
         this.setState({ 
             selectedService: this.state.services.find(s => s.ServiceCode == service)
         }, () => {
-            console.log(this.state.selectedService)
             fetch(BACKEND_URL + '/services/' + service)
             .then(response => {
                 response.json().then(data => {
@@ -48,6 +63,7 @@ class App extends Component {
     }
 
     render() {
+        let filters = this.state.filters || [];
         let attributes = this.state.selectedService ? this.state.selectedService.AttributeNames : [];
 
         return (
@@ -55,13 +71,17 @@ class App extends Component {
                 <ServiceDropDown services={this.state.services} onChange={this.handleServiceSelect}/>
                 {!this.state.selectedService ? '' :
                     <div>
-                        <AttributeFilter 
-                            filterId={1} 
-                            service={this.state.selectedService} 
-                            attributes={attributes} 
-                            onChange={this.handleFilterChange}
-                        />
-                        <Button>Add Filter</Button>
+                        {this.state.filters.map(f => 
+                            <AttributeFilter 
+                                key={f.filterId}
+                                filterId={f.filterId} 
+                                service={this.state.selectedService} 
+                                attributes={attributes} 
+                                onChange={this.handleFilterChange}
+                            />
+                        )}
+                        <AddFilterButton onClick={this.handleAddFilter}/>
+                        <Button onClick={this.handleFetch} className={'pt-intent-success'} icon={'cloud-download'}>Fetch Data</Button>
                     </div>
                 }
                 <pre>{JSON.stringify(this.state.content, null, 4)}</pre>

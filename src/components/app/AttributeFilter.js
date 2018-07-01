@@ -47,7 +47,11 @@ class AttributeFilter extends Component {
 		this.setState({ 
 			selectedValue: value,
 		}, () => {
-			this.props.onChange(this.props.filterId, this.state.selectedAttribute, this.state.selectedValue);
+			this.props.onChange({
+				filterId: this.props.filterId, 
+				attribute: this.state.selectedAttribute, 
+				value: this.state.selectedValue
+			});
 		})
 	}
 
