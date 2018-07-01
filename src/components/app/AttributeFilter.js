@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BACKEND_URL } from '../../constants';
 
 const styles = {
 	select: {
@@ -22,7 +23,7 @@ class AttributeFilter extends Component {
 		let value = event.target.value;
 
 		this.setState({ values: [], api: { isExecuting: true } }, () => {
-			fetch('http://localhost:3001/services/' + this.props.service.ServiceCode + '/attributeValues/' + value)
+			fetch(BACKEND_URL + this.props.service.ServiceCode + '/attributeValues/' + value)
 			.then(response => {
 				response.json().then(data =>{
 					this.setState({ 
