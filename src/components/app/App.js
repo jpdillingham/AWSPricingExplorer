@@ -2,18 +2,10 @@ import React, { Component } from 'react';
 import { BACKEND_URL } from '../../constants';
 import { getGuid } from '../../util';
 
-import { Button, Intent, Spinner, Select } from "@blueprintjs/core";
 import ServiceDropDown from './ServiceDropDown';
 import AttributeFilter from './AttributeFilter';
-import { INTENT_PRIMARY, INTENT_SUCCESS } from '@blueprintjs/core/lib/esm/common/classes';
 import AddFilterButton from './AddFilterButton';
 import FetchDataButton from './FetchDataButton';
-
-const styles = {
-    body: {
-
-    }
-}
 
 class App extends Component {
     state = { 
@@ -46,17 +38,24 @@ class App extends Component {
                 return f.filterId === filter.filterId ? filter : f
             })
         })
-
-        this.setState({ content: this.state.filters })
     }
 
     handleFetchData = () => {
-        console.log(this.state.filters);
+        let query = this.state.filters
+            .reduce((acc, f) => (acc === '' ? '?' : acc + '&') + f.attribute + '=' + f.value, '');
+
+        fetch(BACKEND_URL + '/services/' + this.state.selectedService.ServiceCode + '/products' + query)
+        .then(response => {
+            response.json().then(data => {
+                this.setState({ content: data});
+            });
+        });
     }
 
     handleServiceSelect = (service) => {
         this.setState({ 
-            selectedService: this.state.services.find(s => s.ServiceCode == service)
+            selectedService: this.state.services.find(s => s.ServiceCode == service),
+            filters: [],
         }, () => {
             fetch(BACKEND_URL + '/services/' + service)
             .then(response => {
