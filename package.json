@@ -1,7 +1,7 @@
 {
   "name": "awspricingexplorer",
   "version": "1.0.0",
-  "description": "A front end for the AWS Pricing Api, written with React and blueprintjs.",
+  "description": "A microservice for the AWS Pricing Api, written in JavaScript with Express, React, and blueprintjs.",
   "main": "index.js",
   "scripts": {
     "start": "react-scripts start",
