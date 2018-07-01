@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { BACKEND_URL } from '../../constants';
+import { getGuid } from '../../util';
 
 import { Button, Intent, Spinner, Select } from "@blueprintjs/core";
 import ServiceDropDown from './ServiceDropDown';
@@ -26,8 +28,8 @@ class App extends Component {
         })
     }
 
-    handleFilterChange = (key, attribute, value) => {
-        console.log(key, attribute,value);
+    handleFilterChange = (filterId, attribute, value) => {
+        console.log(filterId, attribute,value);
     }
 
     handleServiceSelect = (service) => {
