@@ -1,6 +1,15 @@
-var dotenv = require('dotenv').config();
-var AWS = require('aws-sdk');
-var express = require('express');
+require('dotenv').config();
+const AWS = require('aws-sdk');
+const express = require('express');  
+const bodyParser = require('body-parser');  
+const cors = require('cors');
+
+const app = express();
+const port = 3001;
+
+app.use(cors());  
+app.use(bodyParser.json());  
+app.use(bodyParser.urlencoded({ extended: true }));
 
 AWS.config.update({
     accessKeyId: process.env.REACT_APP_ACCESS_KEY_ID,
@@ -10,30 +19,27 @@ AWS.config.update({
 
 var pricing = new AWS.Pricing();
 
-// var fetch = (nextToken) => {
-//     pricing.describeServices({ NextToken: nextToken}, function (err, data) {
-//       if (err) console.log(err, err.stack); // an error occurred
-//       else {
-//         console.log(data.services);
-//         //console.log(data.services.length);
-//         if (data.NextToken) { 
-//           console.log('======================================================================')
-//           fetch(data.NextToken) 
-//         }
-//       }  
-//     });
-//   }
+var describeAllServices = (services = [], next) => {
+    return new Promise((resolve, reject) => {
+        pricing.describeServices({ NextToken: next }).promise()
+        .then(data => {
+            services = services.concat(data.Services);
+            if (data.NextToken) {
+                describeAllServices(services, data.NextToken)
+                .then(data => resolve(data))
+            } 
+            else {
+                resolve(services);
+            }
+        })
+    })
+}
 
-  
-var fetch = (next) => pricing.describeServices({ NextToken: next }, function (err, data) {
-    if (err) console.log(err, err.stack); // an error occurred
-    else {
-        console.log(data.Services);    
+app.get('/services', (req, res) => {
+    describeAllServices().then(data => {
+        res.status(200);
+        res.json(data);
+    })
+})
 
-        if (data.NextToken) {
-            fetch(data.NextToken);
-        }
-    }
-  });
-  
-fetch();
+app.listen(port, () => console.log('Listening on port ' + port + '.'));
