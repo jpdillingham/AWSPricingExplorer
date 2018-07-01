@@ -1,0 +1,10 @@
+body {
+    background-color: #293742;
+    padding: 20px;
+}
+
+.form-label {
+    display: inline-block;
+    width: 70px;
+    text-align: right;
+}
