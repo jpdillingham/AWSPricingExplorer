@@ -2,17 +2,26 @@ import React, { Component } from 'react';
 import { BACKEND_URL } from '../../constants';
 import { getGuid } from '../../util';
 
+import { Button, Position, Toast, Toaster, Intent } from "@blueprintjs/core";
+
 import ServiceDropDown from './ServiceDropDown';
 import AttributeFilter from './AttributeFilter';
 import AddFilterButton from './AddFilterButton';
 import FetchDataButton from './FetchDataButton';
 
 class App extends Component {
-    state = { 
-        services: [],
-        selectedService: undefined,
-        content: 'select service',
-        filters: [],
+    constructor(props) {
+        super(props);
+
+        this.state = { 
+            services: [],
+            selectedService: undefined,
+            content: 'select service',
+            filters: [],
+            toasts: [],
+        }
+
+        this.toaster = React.createRef();
     }
 
     componentWillMount = () => {
@@ -48,6 +57,7 @@ class App extends Component {
         .then(response => {
             response.json().then(data => {
                 this.setState({ content: data});
+                this.handleToast('Fetched ' + data.length + ' products for ' + this.state.selectedService.ServiceCode);
             });
         });
     }
@@ -61,8 +71,16 @@ class App extends Component {
             .then(response => {
                 response.json().then(data => {
                     this.setState({ content: data.Services[0] })
+                    this.handleToast('Fetched attributes for service ' + data.Services[0].ServiceCode);
                 })
             })
+        });
+    }
+
+    handleToast = (message) => {
+        this.toaster.current.show({ 
+            message: message,
+            intent: Intent.SUCCESS,
         });
     }
 
@@ -85,6 +103,7 @@ class App extends Component {
                         )}
                         <AddFilterButton onClick={this.handleAddFilter}/>
                         <FetchDataButton onClick={this.handleFetchData}/>
+                        <Toaster ref={this.toaster} position={Position.BOTTOM}/>
                     </div>
                 }
                 <pre>{JSON.stringify(this.state.content, null, 4)}</pre>
