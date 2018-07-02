@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BACKEND_URL } from '../../constants';
 import { getGuid } from '../../util';
 
-import { Button, Position, Toast, Toaster, Intent } from "@blueprintjs/core";
+import { Position, Toaster, Intent } from "@blueprintjs/core";
 
 import ServiceDropDown from './ServiceDropDown';
 import AttributeFilter from './AttributeFilter';
