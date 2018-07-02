@@ -89,7 +89,7 @@ const getAllProducts = (service, filters = [], products = [], next) => {
             products = products.concat(data.PriceList);
 
             if (data.NextToken) {
-                getAllProducts(service, products, data.NextToken)
+                getAllProducts(service, filters, products, data.NextToken)
                 .then(data => resolve(data));
             } 
             else {
