@@ -80,11 +80,11 @@ app.get('/services/:service/products', (req, res) => {
 });
 
 const getAllProducts = (service, filters = [], products = [], next) => {
-    filters = Object.keys(filters)
+    let pricingFilters = Object.keys(filters)
         .map(f => { return { Field: f, Type: 'TERM_MATCH', Value: filters[f]}});
 
     return new Promise((resolve, reject) => {
-        pricing.getProducts({ ServiceCode: service, NextToken: next, Filters: filters }).promise()
+        pricing.getProducts({ ServiceCode: service, NextToken: next, Filters: pricingFilters }).promise()
         .then(data => {
             products = products.concat(data.PriceList);
 
