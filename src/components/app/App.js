@@ -121,7 +121,7 @@ class App extends Component {
                         )}
                         <AddFilterButton onClick={this.handleAddFilter}/>
                         <FetchDataButton onClick={this.handleFetchData}/>
-                        <Toaster ref={this.toaster} position={Position.BOTTOM}/>
+                        <Toaster ref={this.toaster} position={Position.BOTTOM_RIGHT}/>
                     </div>
                 }
                 <pre className={'pre-wrapper'}>
