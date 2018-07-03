@@ -16,7 +16,7 @@ class App extends Component {
         this.state = { 
             services: [],
             selectedService: undefined,
-            content: 'select service',
+            content: undefined,
             filters: [],
             toasts: [],
         }
@@ -82,7 +82,11 @@ class App extends Component {
     }
 
     handleServiceClear = () => {
-        this.setState({ selectedService: undefined, filters: [] });
+        this.setState({ 
+            selectedService: undefined, 
+            filters: [], 
+            content: undefined 
+        });
     }
 
     handleToast = (message) => {
