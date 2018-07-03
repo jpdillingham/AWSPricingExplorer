@@ -6,7 +6,7 @@ const styles = {
 	},
 }
 
-class ServiceDropDown extends Component {
+class ServiceSelect extends Component {
 	handleChange = (event) => {
 		let value = event.target.value;
 
@@ -37,4 +37,4 @@ class ServiceDropDown extends Component {
 	}
 }
 
-export default ServiceDropDown;
+export default ServiceSelect;

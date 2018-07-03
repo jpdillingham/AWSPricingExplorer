@@ -4,7 +4,7 @@ import { getGuid } from '../../util';
 
 import { Position, Toaster, Intent } from "@blueprintjs/core";
 
-import ServiceDropDown from './ServiceDropDown';
+import ServiceSelect from './ServiceSelect';
 import AttributeFilter from './AttributeFilter';
 import AddFilterButton from './AddFilterButton';
 import FetchDataButton from './FetchDataButton';
@@ -97,7 +97,7 @@ class App extends Component {
 
         return (
             <div className={'pt-dark'}>
-                <ServiceDropDown 
+                <ServiceSelect 
                     services={this.state.services} 
                     onChange={this.handleServiceSelect}
                     onClear={this.handleServiceClear}
