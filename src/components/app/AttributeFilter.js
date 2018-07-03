@@ -1,20 +1,6 @@
 import React, { Component } from 'react';
 import { BACKEND_URL } from '../../constants';
 import { Button } from '@blueprintjs/core';
-import { INTENT_DANGER } from '@blueprintjs/core/lib/esm/common/classes';
-
-const styles = {
-	attribute: {
-		width: 200,
-	},
-	value: {
-		marginLeft: 10,
-		width: 405,
-	},
-	button: {
-		marginLeft: 10,
-	}
-}
 
 class AttributeFilter extends Component {
 	state = { 
@@ -71,18 +57,18 @@ class AttributeFilter extends Component {
 		return (
 			<label className="pt-label pt-inline">
 				<span className={'form-label'}>Filter</span>
-				<div className={'pt-select'}>
-					<select onChange={this.handleAttributeChange} style={styles.attribute}>
+				<div className={'pt-select attribute-select'}>
+					<select onChange={this.handleAttributeChange}>
 						<option selected>Select</option>
 						{attributes.map((a, index) => 
 							<option key={index} value={a}>{a}</option>
 						)}
 					</select>
 				</div>
-				<div className={'pt-select'}>
+				<div className={'pt-select value-select'}>
 					<select 
 						onChange={this.handleValueChange} 
-						style={styles.value}
+						className={''}
 						disabled={this.state.api.isExecuting || !this.state.values.length}
 					>
 						{this.state.api.isExecuting ? <option selected>Loading...</option> : ''}
@@ -100,8 +86,7 @@ class AttributeFilter extends Component {
 				</div>
 				<Button 
 					icon={'delete'} 
-					className={'pt-intent-danger'}
-					style={styles.button}
+					className={'pt-intent-danger delete-button'}
 					onClick={this.props.onDelete}
 				/>
 			</label>

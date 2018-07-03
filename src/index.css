@@ -3,13 +3,40 @@ body {
     padding: 20px;
 }
 
+.pre-wrapper {
+    margin-top: 20px !important;
+}
+
+.pt-label {
+    margin-bottom: 10px !important;
+}
+
 .form-label {
     display: inline-block;
     width: 70px;
     text-align: right;
+    margin-right: 5px;
 }
 
 .fetch-data-button {
-    width: 660px;
+    width: 655px;
     margin-left: 5px;
+    margin-top: 30px;
+}
+
+.service-select {
+    width: 300px !important;
+}
+
+.attribute-select {
+    width: 200px !important;
+}
+
+.value-select {
+    width: 405px !important;
+    margin-left: 10px !important;
+}
+
+.delete-button {
+    margin-left: 10px !important;
 }

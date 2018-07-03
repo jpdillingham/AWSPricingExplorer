@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
 
-const styles = {
-	select: {
-		width: 300,
-	},
-}
-
 class ServiceSelect extends Component {
 	handleChange = (event) => {
 		let value = event.target.value;
@@ -23,7 +17,7 @@ class ServiceSelect extends Component {
 			<label className="pt-label pt-inline">
 				<span className={'form-label'}>Service</span>
 				<div className={'pt-select'}>
-					<select onChange={this.handleChange} style={styles.select}>
+					<select onChange={this.handleChange} className={'service-select'}>
 						<option selected>Select</option>
 						{this.props.services
 							.sort((a, b) => a.ServiceCode.toLowerCase().localeCompare(b.ServiceCode.toLowerCase()))

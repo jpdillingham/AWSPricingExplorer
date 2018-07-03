@@ -124,8 +124,8 @@ class App extends Component {
                         <Toaster ref={this.toaster} position={Position.BOTTOM}/>
                     </div>
                 }
-                {!this.state.content ? '' : 
-                    <pre>
+                <pre className={'pre-wrapper'}>
+                    {!this.state.content ? 'Select a service.' : 
                         <ReactJson 
                             src={this.state.content} 
                             theme={'colors'}
@@ -138,8 +138,8 @@ class App extends Component {
                             displayObjectSize={false}
                             style={{background: '#222e36'}}
                         />
-                    </pre>
-                }
+                    }
+                </pre>
             </div>
         );
     }
