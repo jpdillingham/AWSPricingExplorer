@@ -43,10 +43,14 @@ class App extends Component {
 
     handleFilterChange = (filter) => {
         this.setState({
-            filters: this.state.filters.map(f => {
-                return f.filterId === filter.filterId ? filter : f
-            })
+            filters: this.state.filters.map(f => f.filterId === filter.filterId ? filter : f)
         })
+    }
+
+    handleFilterDelete = (filter) => {
+        this.setState({
+            filters: this.state.filters.filter(f => f.filterId !== filter.filterId)
+        });
     }
 
     handleFetchData = () => {
@@ -107,6 +111,7 @@ class App extends Component {
                                 service={this.state.selectedService} 
                                 attributes={attributes} 
                                 onChange={this.handleFilterChange}
+                                onDelete={() => this.handleFilterDelete(f)}
                             />
                         )}
                         <AddFilterButton onClick={this.handleAddFilter}/>

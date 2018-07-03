@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { BACKEND_URL } from '../../constants';
+import { Button } from '@blueprintjs/core';
+import { INTENT_DANGER } from '@blueprintjs/core/lib/esm/common/classes';
 
 const styles = {
 	attribute: {
@@ -9,6 +11,9 @@ const styles = {
 		marginLeft: 10,
 		width: 405,
 	},
+	button: {
+		marginLeft: 10,
+	}
 }
 
 class AttributeFilter extends Component {
@@ -93,6 +98,12 @@ class AttributeFilter extends Component {
 						)}
 					</select>
 				</div>
+				<Button 
+					icon={'delete'} 
+					className={'pt-intent-danger'}
+					style={styles.button}
+					onClick={this.props.onDelete}
+				/>
 			</label>
 		);
 	}
