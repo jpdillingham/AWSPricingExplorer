@@ -77,6 +77,10 @@ class App extends Component {
         });
     }
 
+    handleServiceClear = () => {
+        this.setState({ selectedService: undefined, filters: [] });
+    }
+
     handleToast = (message) => {
         this.toaster.current.show({ 
             message: message,
@@ -89,7 +93,11 @@ class App extends Component {
 
         return (
             <div className={'pt-dark'}>
-                <ServiceDropDown services={this.state.services} onChange={this.handleServiceSelect}/>
+                <ServiceDropDown 
+                    services={this.state.services} 
+                    onChange={this.handleServiceSelect}
+                    onClear={this.handleServiceClear}
+                />
                 {!this.state.selectedService ? '' :
                     <div>
                         {this.state.filters.map(f => 

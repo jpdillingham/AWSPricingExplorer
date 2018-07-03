@@ -8,7 +8,14 @@ const styles = {
 
 class ServiceDropDown extends Component {
 	handleChange = (event) => {
-		this.props.onChange(event.target.value);
+		let value = event.target.value;
+
+		if (value !== 'Select') {
+			this.props.onChange(value);
+		}
+		else {
+			this.props.onClear();
+		}
 	}
 
 	render() {
@@ -17,9 +24,11 @@ class ServiceDropDown extends Component {
 				<span className={'form-label'}>Service</span>
 				<div className={'pt-select'}>
 					<select onChange={this.handleChange} style={styles.select}>
-						<option selected></option>
-						{this.props.services.map((s, index) => 
-							<option key={index} value={s.ServiceCode}>{s.ServiceCode}</option>
+						<option selected>Select</option>
+						{this.props.services
+							.sort((a, b) => a.ServiceCode.toLowerCase().localeCompare(b.ServiceCode.toLowerCase()))
+							.map((s, index) => 
+								<option key={index} value={s.ServiceCode}>{s.ServiceCode}</option>
 						)}
 					</select>
 				</div>
