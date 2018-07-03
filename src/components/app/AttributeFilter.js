@@ -57,7 +57,12 @@ class AttributeFilter extends Component {
 	}
 
 	render() {
-		let attributes = this.props.attributes || [];
+		let attributes = this.props.attributes
+			.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase())) || [];
+
+		let values = this.state.values
+			.sort((a, b) => a.Value.toLowerCase().localeCompare(b.Value.toLowerCase())) || [];
+
 		return (
 			<label className="pt-label pt-inline">
 				<span className={'form-label'}>Filter</span>
@@ -77,13 +82,14 @@ class AttributeFilter extends Component {
 					>
 						{this.state.api.isExecuting ? <option selected>Loading...</option> : ''}
 						<option selected>Select</option>
-						{this.state.values.map((v, index) => 
-							<option 
-								key={index} 
-								value={v.Value}
-							>
-								{v.Value}
-							</option>
+						{values
+							.map((v, index) => 
+								<option 
+									key={index} 
+									value={v.Value}
+								>
+									{v.Value}
+								</option>
 						)}
 					</select>
 				</div>
