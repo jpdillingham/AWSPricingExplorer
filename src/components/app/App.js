@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BACKEND_URL } from '../../constants';
 import { getGuid } from '../../util';
 
+import ReactJson from 'react-json-view';
 import { Position, Toaster, Intent } from "@blueprintjs/core";
 
 import ServiceSelect from './ServiceSelect';
@@ -123,7 +124,22 @@ class App extends Component {
                         <Toaster ref={this.toaster} position={Position.BOTTOM}/>
                     </div>
                 }
-                <pre>{JSON.stringify(this.state.content, null, 4)}</pre>
+                {!this.state.content ? '' : 
+                    <pre>
+                        <ReactJson 
+                            src={this.state.content} 
+                            theme={'colors'}
+                            collapsed={4}
+                            onEdit={false}
+                            onDelete={false}
+                            onAdd={false}
+                            displayDataTypes={false}
+                            enableClipboard={false}
+                            displayObjectSize={false}
+                            style={{background: '#222e36'}}
+                        />
+                    </pre>
+                }
             </div>
         );
     }
