@@ -8,3 +8,8 @@ body {
     width: 70px;
     text-align: right;
 }
+
+.fetch-data-button {
+    width: 660px;
+    margin-left: 5px;
+}
